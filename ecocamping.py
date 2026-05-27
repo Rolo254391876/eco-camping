@@ -1,4 +1,4 @@
-ptint("Gestión Eco-Camping 'Bosque Vivo'")
+print("Gestión Eco-Camping 'Bosque Vivo'")
 capacidad_maxima = 15
 sitios_ocupados = 0
 ejecutando = True
@@ -34,5 +34,28 @@ while ejecutando:
                     print(f"Ingreso registrado, se ha ocupado {ingreso} de sitios")
             except ValueError:
                 print("Error: debe ingresar un número válido")
+    elif opcion == 3:
+        print(f"\n-- REGISTRAR SALIDA (Vehículos o sitios ocupados: {sitios_ocupados})")
+        if sitios_ocupados == 0:
+            print("No hay vehículos registrados en el camping catualmente")
+        else:
+            try:
+                salida = int(input("¿Cuántos vehículos se retiran?: "))
+                if salida <= 0:
+                    print("Error: la cantidad a retirar debe ser mayor a 0")
+                elif salida > sitios_ocupados:
+                    print(f"Error: no se pueden retirar mas de {sitios_ocupados} vehículos")
+                else:
+                    sitios_ocupados -= salida
+                    print(f"Salida registrada, se han liberado {salida} sitios")
+            except ValueError:
+                print("Error: debe ingresar un número entero válido")
+    elif opcion == 4:
+        porcentaje_ocupacion = (sitios_ocupados / capacidad_maxima) * 100
+        print(f"\n[ESTADO] Ocupación actual: {sitios_ocupados}/{capacidad_maxima} sitios")
+        print(f"[ESTADO] El camping está al {porcentaje_ocupacion:.1f}% de su capacidad")
+    elif opcion == 5:
+        print("Cerrando el sistema")
+        ejecutando = False                                                
     else:
         print("Opción fuera de rango")    
